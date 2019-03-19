@@ -72,7 +72,7 @@ public class LegacyCameraConnectionFragment extends Fragment {
                     try {
                         Camera.Parameters parameters = camera.getParameters();
                         parameters.setPreviewSize(desiredSize.getWidth(), desiredSize.getHeight());
-                        camera.setDisplayOrientation(90);
+                        camera.setDisplayOrientation(0);
                         camera.setParameters(parameters);
                         camera.setPreviewTexture(texture);
                     } catch (IOException exception) {
@@ -104,6 +104,10 @@ public class LegacyCameraConnectionFragment extends Fragment {
      * An {@link AutoFaceFitTextureView} for camera preview.
      */
     private AutoFaceFitTextureView textureView;
+
+    public AutoFaceFitTextureView getTextureView(){
+        return textureView;
+    }
 
     /**
      * An additional thread for running tasks that shouldn't block the UI.

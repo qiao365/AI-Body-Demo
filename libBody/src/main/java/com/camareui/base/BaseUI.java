@@ -12,6 +12,11 @@ import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Message;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicYuvToRGB;
+import android.renderscript.Type;
 import android.util.Log;
 import android.util.Size;
 import android.widget.ImageView;
@@ -20,6 +25,7 @@ import android.widget.TextView;
 import com.camareui.constant.Constant;
 import com.camareui.fragment.LegacyCameraConnectionFragment;
 import com.camareui.model.CameraFrameData;
+import com.camareui.utils.BitmapUtil;
 import com.camareui.utils.YuvToRGB;
 import com.camareui.view.OverlayView;
 import com.camareui.utils.ImageUtils;
@@ -129,6 +135,8 @@ public class BaseUI implements Camera.PreviewCallback {
     }
 
     private void initJetDetect() {
+        rs = RenderScript.create(activity);
+        yuvToRgbIntrinsic = ScriptIntrinsicYuvToRGB.create(rs, Element.U8_4(rs));
         BodyLandMkDetection.initWithPath(Constant.JET_BIN_DIR + File.separator + Constant
                 .JET_INPUT256_C64_PARAM_BIN, Constant.JET_BIN_DIR + File.separator + Constant
                 .JET_INPUT256_C64_BIN);
@@ -144,41 +152,50 @@ public class BaseUI implements Camera.PreviewCallback {
     }
 
 
+    private RenderScript rs;
+    private ScriptIntrinsicYuvToRGB yuvToRgbIntrinsic;
+    private Type.Builder yuvType, rgbaType;
+    private Allocation in, out;
     protected void jetBodyRecognition() {
-        rgbFrameBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);
-        croppedBitmap = Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888);
+
         long startTime = System.currentTimeMillis();
-        rgbFrameBitmap.setPixels(getRgbBytes(), 0, previewWidth, 0, 0, previewWidth, previewHeight);
-        long endTime = System.currentTimeMillis();
-        Log.i(TAG, "jet检测，bitmap.setPixels耗时: " + (endTime - startTime));
-        Matrix frameToCropMatrix = ImageUtils.getTransformationMatrix(
-                previewWidth, previewHeight,
-                previewHeight, previewWidth,
-                270, false, false);
-        final Canvas croppedCanvas = new Canvas(croppedBitmap);
-        croppedCanvas.drawBitmap(rgbFrameBitmap, frameToCropMatrix, new Paint());
+        int prevSizeW = cameraFrameData.getWidth();
+        int prevSizeH = cameraFrameData.getHeigh();
+        if (yuvType == null)
+        {
+            yuvType = new Type.Builder(rs, Element.U8(rs)).setX(cameraFrameData.getBytes().length);
+            in = Allocation.createTyped(rs, yuvType.create(), Allocation.USAGE_SCRIPT);
+
+            rgbaType = new Type.Builder(rs, Element.RGBA_8888(rs)).setX(prevSizeW).setY(prevSizeH);
+            out = Allocation.createTyped(rs, rgbaType.create(), Allocation.USAGE_SCRIPT);
+        }
+
+        in.copyFrom(cameraFrameData.getBytes());
+
+        yuvToRgbIntrinsic.setInput(in);
+        yuvToRgbIntrinsic.forEach(out);
+
+        Bitmap picture = Bitmap.createBitmap(prevSizeW, prevSizeH, Bitmap.Config.ARGB_8888);
+        out.copyTo(picture);
+
+        Bitmap copyBitmap = picture.copy(Bitmap.Config.ARGB_8888, true);
+        final Canvas croppedCanvas = new Canvas(copyBitmap);
 
         //关闭预览
         if (mDataSettingAndListener != null && !mDataSettingAndListener.getPreViewStatus()) {
             return;
         }
-        endTime = System.currentTimeMillis();
-        Log.i(TAG, "jet检测，获取bitmap耗时: " + (endTime - startTime));
+        long endTime = System.currentTimeMillis();
         //根据data保存的数据画框
 
-        int width = croppedBitmap.getWidth();
-        int height = croppedBitmap.getHeight();
-
-//        int[] image_input = new int[width * height];
-//        croppedBitmap.getPixels(image_input, 0, width, 0, 0, width, height); bitmap方式可行，但是效率较慢，最好直接转换
-        byte[] data = rotateYUV420Degree270(cameraFrameData.getBytes(), previewWidth, previewHeight);//前置摄像头 数据 旋转 270为正
-//        int[] dataNormal = ImageUtils.convertYUV420_NV21toARGB8888(data, width, height);
-        //        ImageUtils.ARGBtoRGBA(dataNormal);
-        int[] dataNormal = YuvToRGB.NV21ToRGB(data, width, height);
-
+        int width = copyBitmap.getWidth();
+        int height = copyBitmap.getHeight();
+        int[] dataNormal = new int[width * height];
+        copyBitmap.getPixels(dataNormal, 0, width, 0, 0, width, height);
         float[] testResultData = new float[14 * 3];
 
-        BodyLandMkDetection.bodyDetectLandMarkRGB(height, width, dataNormal, testResultData);
+        Log.i(TAG, "jet检测，获取bitmap耗时: " + (endTime - startTime));
+        BodyLandMkDetection.bodyDetectLandMarkRGBA(height, width, dataNormal, testResultData);
 
         Paint p = new Paint();
         p.setColor(Color.RED);
@@ -193,11 +210,9 @@ public class BaseUI implements Camera.PreviewCallback {
 
         endTime = System.currentTimeMillis();
         Log.i(TAG, "jet检测，总耗时： " + (endTime - startTime));
-        textureCopyBitmap = Bitmap.createBitmap(croppedBitmap);
-        croppedBitmap.recycle();
-        croppedBitmap = null;
-        rgbFrameBitmap.recycle();
-        rgbFrameBitmap = null;
+        textureCopyBitmap = copyBitmap.copy(Bitmap.Config.ARGB_8888, true);
+        picture.recycle();
+        picture = null;
         requestRender();
     }
 
@@ -224,9 +239,11 @@ public class BaseUI implements Camera.PreviewCallback {
         }
     }
 
+    private LegacyCameraConnectionFragment fragment;
+
     protected void setFragment() {
         Size DESIRED_PREVIEW_SIZE = new Size(640, 480);
-        Fragment fragment =
+        fragment =
                 new LegacyCameraConnectionFragment(this, getLayoutId(), DESIRED_PREVIEW_SIZE);
         activity.getFragmentManager()
                 .beginTransaction()
