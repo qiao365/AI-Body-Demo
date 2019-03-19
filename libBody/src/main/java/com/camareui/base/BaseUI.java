@@ -135,8 +135,6 @@ public class BaseUI implements Camera.PreviewCallback {
     }
 
     private void initJetDetect() {
-        rs = RenderScript.create(activity);
-        yuvToRgbIntrinsic = ScriptIntrinsicYuvToRGB.create(rs, Element.U8_4(rs));
         BodyLandMkDetection.initWithPath(Constant.JET_BIN_DIR + File.separator + Constant
                 .JET_INPUT256_C64_PARAM_BIN, Constant.JET_BIN_DIR + File.separator + Constant
                 .JET_INPUT256_C64_BIN);
@@ -151,32 +149,13 @@ public class BaseUI implements Camera.PreviewCallback {
         this.time_textZhen = time_textZhen;
     }
 
-
-    private RenderScript rs;
-    private ScriptIntrinsicYuvToRGB yuvToRgbIntrinsic;
-    private Type.Builder yuvType, rgbaType;
-    private Allocation in, out;
     protected void jetBodyRecognition() {
 
         long startTime = System.currentTimeMillis();
         int prevSizeW = cameraFrameData.getWidth();
         int prevSizeH = cameraFrameData.getHeigh();
-        if (yuvType == null)
-        {
-            yuvType = new Type.Builder(rs, Element.U8(rs)).setX(cameraFrameData.getBytes().length);
-            in = Allocation.createTyped(rs, yuvType.create(), Allocation.USAGE_SCRIPT);
 
-            rgbaType = new Type.Builder(rs, Element.RGBA_8888(rs)).setX(prevSizeW).setY(prevSizeH);
-            out = Allocation.createTyped(rs, rgbaType.create(), Allocation.USAGE_SCRIPT);
-        }
-
-        in.copyFrom(cameraFrameData.getBytes());
-
-        yuvToRgbIntrinsic.setInput(in);
-        yuvToRgbIntrinsic.forEach(out);
-
-        Bitmap picture = Bitmap.createBitmap(prevSizeW, prevSizeH, Bitmap.Config.ARGB_8888);
-        out.copyTo(picture);
+        Bitmap picture = BitmapUtil.compressYUVtoBitmap(activity,cameraFrameData.getBytes(),prevSizeW,prevSizeH);
 
         Bitmap copyBitmap = picture.copy(Bitmap.Config.ARGB_8888, true);
         final Canvas croppedCanvas = new Canvas(copyBitmap);
