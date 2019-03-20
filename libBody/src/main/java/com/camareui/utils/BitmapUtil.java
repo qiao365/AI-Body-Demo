@@ -726,14 +726,24 @@ public class BitmapUtil {
         return stream.toByteArray();
     }
 
+    private static Type.Builder yuvType,rgbaType;
+    private static Allocation in, out;
+    private static RenderScript rs;
+    private static ScriptIntrinsicYuvToRGB yuvToRgbIntrinsic;
+
     public static Bitmap compressYUVtoBitmap(Context activity, byte[] data, int width, int height) {
-        Allocation in, out;
-        RenderScript rs = RenderScript.create(activity);
-        ScriptIntrinsicYuvToRGB yuvToRgbIntrinsic = ScriptIntrinsicYuvToRGB.create(rs, Element.U8_4(rs));
-        Type.Builder yuvType = new Type.Builder(rs, Element.U8(rs)).setX(data.length);
-        in = Allocation.createTyped(rs, yuvType.create(), Allocation.USAGE_SCRIPT);
-        Type.Builder rgbaType = new Type.Builder(rs, Element.RGBA_8888(rs)).setX(width).setY(height);
-        out = Allocation.createTyped(rs, rgbaType.create(), Allocation.USAGE_SCRIPT);
+
+        if (rs == null) rs = RenderScript.create(activity);
+        if (yuvToRgbIntrinsic == null)
+            yuvToRgbIntrinsic = ScriptIntrinsicYuvToRGB.create(rs, Element.U8_4(rs));
+        if (yuvType == null) {
+            yuvType = new Type.Builder(rs, Element.U8(rs)).setX(data.length);
+            in = Allocation.createTyped(rs, yuvType.create(), Allocation.USAGE_SCRIPT);
+
+            rgbaType = new Type.Builder(rs, Element.RGBA_8888(rs)).setX(width).setY(height);
+            out = Allocation.createTyped(rs, rgbaType.create(), Allocation.USAGE_SCRIPT);
+        }
+
         in.copyFrom(data);
         yuvToRgbIntrinsic.setInput(in);
         yuvToRgbIntrinsic.forEach(out);
