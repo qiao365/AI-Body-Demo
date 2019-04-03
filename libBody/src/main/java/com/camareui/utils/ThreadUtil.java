@@ -16,7 +16,7 @@ public class ThreadUtil {
     private static final int core_number = Runtime.getRuntime().availableProcessors();
     private static final int keep_alive_time = 3;
     private static final TimeUnit timeUnit = TimeUnit.SECONDS;
-    private static final BlockingQueue<Runnable> taskQueue = new LinkedBlockingDeque<>();
+    private static final BlockingQueue<Runnable> taskQueue = new LinkedBlockingDeque<Runnable>();
     private static final ExecutorService executor = new ThreadPoolExecutor(core_number, core_number * 2,
             keep_alive_time, timeUnit, taskQueue, Executors.defaultThreadFactory());
 

@@ -10,7 +10,6 @@ import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.Surface;
@@ -120,7 +119,7 @@ public class LegacyCameraConnectionFragment extends Fragment {
 
     @Override
     public void onViewCreated(final View view, final Bundle savedInstanceState) {
-        textureView = view.findViewById(R.id.texture);
+        textureView = (AutoFaceFitTextureView)view.findViewById(R.id.texture);
     }
 
     @Override

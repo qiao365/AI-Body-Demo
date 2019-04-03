@@ -18,12 +18,12 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicYuvToRGB;
 import android.renderscript.Type;
 import android.util.Log;
-import android.util.Size;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.camareui.constant.Constant;
 import com.camareui.fragment.LegacyCameraConnectionFragment;
+import com.camareui.fragment.Size;
 import com.camareui.model.CameraFrameData;
 import com.camareui.utils.BitmapUtil;
 import com.camareui.utils.YuvToRGB;
@@ -284,17 +284,17 @@ public class BaseUI implements Camera.PreviewCallback {
     }
 
     private void execTask() {
-        if (cameraFrameData != null) {
-            try {
-                if (rgbBytes == null) {
-                    rgbBytes = new int[previewWidth * previewHeight];
-                }
-            } catch (final Exception e) {
-                return;
-            }
-            //人体识别
-            jetBodyRecognition();
-        }
+//        if (cameraFrameData != null) {
+//            try {
+//                if (rgbBytes == null) {
+//                    rgbBytes = new int[previewWidth * previewHeight];
+//                }
+//            } catch (final Exception e) {
+//                return;
+//            }
+//            //人体识别
+//            jetBodyRecognition();
+//        }
     }
 
     private void renderDebug(final Canvas canvas) {
@@ -312,7 +312,7 @@ public class BaseUI implements Camera.PreviewCallback {
     }
 
     public void requestRender() {
-        overlay = activity.findViewById(R.id.debug_overlay);
+        overlay = (OverlayView)activity.findViewById(R.id.debug_overlay);
         addOverlayViewCallback(
                 new OverlayView.DrawCallback() {
                     @Override
