@@ -165,7 +165,6 @@ public class LegacyCameraConnectionFragment extends Fragment {
             }
         }
         return -1; // 没有摄像头
-
     }
 
     /**

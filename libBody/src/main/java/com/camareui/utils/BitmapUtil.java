@@ -457,7 +457,6 @@ public class BitmapUtil {
         return bitmap;
     }
 
-
     public static boolean saveBitmap(Bitmap mybitmap, String path) {
         boolean result = false;
         if (mybitmap == null) {

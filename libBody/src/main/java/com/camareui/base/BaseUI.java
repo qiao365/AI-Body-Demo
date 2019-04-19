@@ -53,6 +53,23 @@ public class BaseUI implements Camera.PreviewCallback {
     private OverlayView overlay;
     private Bitmap rgbFrameBitmap, croppedBitmap;
 
+    public void savePicture() {
+        int prevSizeW = cameraFrameData.getWidth();
+        int prevSizeH = cameraFrameData.getHeigh();
+        final Bitmap picture = BitmapUtil.compressYUVtoBitmap(activity, cameraFrameData.getBytes(), prevSizeW, prevSizeH);
+        File file = new File(activity.getExternalFilesDir(null).getAbsolutePath() + "/demo/");
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        BitmapUtil.saveBitmap(picture, file.toString() + "/" + System.currentTimeMillis() + "_bitmap.jpg");
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (img != null) img.setImageBitmap(picture);
+            }
+        });
+    }
+
     public interface DataSettingAndListener {
         Constant.AISDKTYPE getSdkAiType();
 
@@ -64,6 +81,7 @@ public class BaseUI implements Camera.PreviewCallback {
     private boolean canHandler = true;//是否循环
     private int fragmentId;
     private TextView width, height, xiaolv, textZhen, time_textZhen;
+    private ImageView img;
 
     private int getLayoutId() {
         return R.layout.camera_base_fragment_connect;
@@ -74,41 +92,11 @@ public class BaseUI implements Camera.PreviewCallback {
         @Override
         public void handleMessage(final Message msg) {
             switch (msg.what) {
-                case 0:
-                    startFaceRecognizationTask();
-                    break;
+
             }
         }
     };
 
-    private void startFaceRecognizationTask() {
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                long currentTime = System.currentTimeMillis();
-                if (currentTime - previousTime >= intervalTime) {
-                    previousTime = currentTime;
-                    final long a = System.currentTimeMillis();
-                    execTask();
-                    final long b = System.currentTimeMillis();
-                    Log.i(TAG, "run:run: " + (b - a));
-                    Log.i(TAG, "run:run: " + previewWidth + "---" + previewHeight);
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (width != null) width.setText(previewHeight + "");
-                            if (height != null) height.setText(previewWidth + "");
-                            if (xiaolv != null) xiaolv.setText((b - a) + "");
-                            if (textZhen != null) textZhen.setText(frameCountMax + "");
-                            if (time_textZhen != null) time_textZhen.setText(intervalTime + "");
-                        }
-                    });
-                }
-                if (canHandler) hand.sendEmptyMessage(0);
-            }
-        };
-        mTimer.schedule(task, 0);
-    }
 
     //可设置预览
     public BaseUI(Activity activity, int fragmentId) {
@@ -129,9 +117,9 @@ public class BaseUI implements Camera.PreviewCallback {
 
     public void setDataSettingAndListener(DataSettingAndListener mmDataSettingAndListener) {
         this.mDataSettingAndListener = mmDataSettingAndListener;
-        initJetDetect();
-        // 开启定时器去进行数据处理
-        startTimerCameraFrameData();
+//        initJetDetect();
+//        // 开启定时器去进行数据处理
+//        startTimerCameraFrameData();
     }
 
     private void initJetDetect() {
@@ -141,12 +129,13 @@ public class BaseUI implements Camera.PreviewCallback {
     }
 
 
-    public void setTextViews(TextView width, TextView height, TextView xiaolv, TextView textZhen, TextView time_textZhen) {
+    public void setTextViews(TextView width, TextView height, TextView xiaolv, TextView textZhen, TextView time_textZhen, ImageView img) {
         this.width = width;
         this.height = height;
         this.xiaolv = xiaolv;
         this.textZhen = textZhen;
         this.time_textZhen = time_textZhen;
+        this.img = img;
     }
 
     protected void jetBodyRecognition() {
@@ -155,7 +144,7 @@ public class BaseUI implements Camera.PreviewCallback {
         int prevSizeW = cameraFrameData.getWidth();
         int prevSizeH = cameraFrameData.getHeigh();
 
-        Bitmap picture = BitmapUtil.compressYUVtoBitmap(activity,cameraFrameData.getBytes(),prevSizeW,prevSizeH);
+        Bitmap picture = BitmapUtil.compressYUVtoBitmap(activity, cameraFrameData.getBytes(), prevSizeW, prevSizeH);
 
         Bitmap copyBitmap = picture.copy(Bitmap.Config.ARGB_8888, true);
         final Canvas croppedCanvas = new Canvas(copyBitmap);
@@ -312,7 +301,7 @@ public class BaseUI implements Camera.PreviewCallback {
     }
 
     public void requestRender() {
-        overlay = (OverlayView)activity.findViewById(R.id.debug_overlay);
+        overlay = (OverlayView) activity.findViewById(R.id.debug_overlay);
         addOverlayViewCallback(
                 new OverlayView.DrawCallback() {
                     @Override

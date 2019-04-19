@@ -75,7 +75,7 @@ public class SplashActivity extends Activity {
 
     private void enterMainpage() {
         mSp.edit().putBoolean(Constant.PREFERENCE_KEY_IS_FIRST_COME_IN, false).apply();
-        Intent intent = new Intent(this, StartActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();
     }
