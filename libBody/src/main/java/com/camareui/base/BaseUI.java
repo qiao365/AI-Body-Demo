@@ -18,7 +18,6 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicYuvToRGB;
 import android.renderscript.Type;
 import android.util.Log;
-import android.util.Size;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -184,7 +183,8 @@ public class BaseUI implements Camera.PreviewCallback {
         for (int i = 0; i < 14; i++) {
             float xPos = testResultData[3 * i] * xScale;
             float yPos = testResultData[3 * i + 1] * ySclae;
-            croppedCanvas.drawCircle(xPos, yPos, 2, p);
+            croppedCanvas.drawCircle(xPos, yPos, 5, p);
+            Log.i(TAG, "jet检测，point： " + xPos +" ," +yPos);
         }
 
         endTime = System.currentTimeMillis();

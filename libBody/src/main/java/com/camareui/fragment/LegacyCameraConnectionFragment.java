@@ -10,7 +10,6 @@ import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.Surface;
@@ -18,6 +17,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.camareui.base.Size;
 import com.camareui.constant.Constant;
 import com.camareui.view.AutoFaceFitTextureView;
 import com.camareui.base.R;
