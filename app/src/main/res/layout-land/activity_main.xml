@@ -175,5 +175,13 @@
         android:layout_alignParentBottom="true"
         android:text="横屏存图" />
 
+    <Button
+        android:id="@+id/btnqiehuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        />
+
 </RelativeLayout>
 

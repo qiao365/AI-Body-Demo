@@ -11,4 +11,6 @@ public class Constant {
     public static enum AISDKTYPE {
         FACE, DYNAMICREG, BODY, MOREFACE,OPENCV, ARCSOFT, JETDETECTBODY
     }
+
+    public static int cameraId = 0;
 }

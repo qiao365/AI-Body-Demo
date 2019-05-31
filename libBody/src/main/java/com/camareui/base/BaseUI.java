@@ -70,6 +70,10 @@ public class BaseUI implements Camera.PreviewCallback {
         });
     }
 
+    public void release() {
+        fragment.stopCamera();
+    }
+
     public interface DataSettingAndListener {
         Constant.AISDKTYPE getSdkAiType();
 
@@ -195,15 +199,19 @@ public class BaseUI implements Camera.PreviewCallback {
      */
     @Override
     public void onPreviewFrame(final byte[] bytes, final Camera camera) {
-        Camera.Size previewSize = camera.getParameters().getPreviewSize();
-        previewWidth = previewSize.width;
-        previewHeight = previewSize.height;
-        if (cameraFrameData == null) {
-            cameraFrameData = new CameraFrameData(bytes, previewWidth, previewHeight);
-        } else {
-            cameraFrameData.setBytes(bytes);
-            cameraFrameData.setWidth(previewWidth);
-            cameraFrameData.setHeigh(previewHeight);
+        try {
+            Camera.Size previewSize = camera.getParameters().getPreviewSize();
+            previewWidth = previewSize.width;
+            previewHeight = previewSize.height;
+            if (cameraFrameData == null) {
+                cameraFrameData = new CameraFrameData(bytes, previewWidth, previewHeight);
+            } else {
+                cameraFrameData.setBytes(bytes);
+                cameraFrameData.setWidth(previewWidth);
+                cameraFrameData.setHeigh(previewHeight);
+            }
+        } catch (Exception E) {
+            activity.finish();
         }
     }
 

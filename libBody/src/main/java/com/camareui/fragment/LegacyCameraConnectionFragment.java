@@ -143,7 +143,7 @@ public class LegacyCameraConnectionFragment extends Fragment {
         super.onPause();
     }
 
-    protected void stopCamera() {
+    public void stopCamera() {
         if (camera != null) {
             camera.stopPreview();
             camera.setPreviewCallback(null);
@@ -153,18 +153,18 @@ public class LegacyCameraConnectionFragment extends Fragment {
     }
 
     private int getCameraId() {
-        CameraInfo ci = new CameraInfo();
-        int size = Camera.getNumberOfCameras();
-        if (size == 1) {
-            return 0;
-        } else if (size >= 2) {
-            for (int i = 0; i < size; i++) {
-                Camera.getCameraInfo(i, ci);
-                if (ci.facing == CameraInfo.CAMERA_FACING_FRONT)
-                    return i;
-            }
-        }
-        return -1; // 没有摄像头
+//        CameraInfo ci = new CameraInfo();
+//        int size = Camera.getNumberOfCameras();
+//        if (size == 1) {
+//            return 0;
+//        } else if (size >= 2) {
+//            for (int i = 0; i < size; i++) {
+//                Camera.getCameraInfo(i, ci);
+//                if (ci.facing == CameraInfo.CAMERA_FACING_FRONT)
+//                    return i;
+//            }
+//        }
+        return Constant.cameraId; // 没有摄像头
     }
 
     /**
