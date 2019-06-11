@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jdjr.risk.face.local.demo.main.DeviceActiveActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_horizontal"
+
+            android:textSize="27sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold"
+            android:text="进入此激活界面前必须联网"
+            />
+
+        <EditText
+            android:id="@+id/active_id_input"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+
+            android:hint="请输入设备激活码"
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:digits="0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+
+            />
+
+
+
+
+
+
+        <Button
+            android:layout_marginTop="10dp"
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="配置人脸服务"
+            android:onClick="startFaceService"
+
+            android:layout_marginBottom="10dp"
+
+            android:visibility="gone"
+            />
+
+
+
+
+        <Button
+
+            style="@style/button_demo"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="激活设备"
+            android:onClick="activeDevice"
+
+
+            />
+
+
+        <Button
+
+            style="@style/button_demo"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="扫描激活"
+            android:onClick="getQRCode"
+
+
+            />
+
+
+
+
+
+
+
+
+        <Button
+            style="@style/button_demo"
+            android:layout_width="700dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text=""
+            android:onClick="inputActiveCode"
+
+
+            />
+
+
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="190dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="3399_michael"
+
+            />
+
+        <Button
+
+            style="@style/button_demo"
+            android:layout_width="700dp"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="095793aded044abe80c7571ecfe5d1d0"
+            android:onClick="inputActiveCode"
+
+
+            />
+
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="190dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="3399_xiaoguang"
+
+            />
+
+        <Button
+
+            style="@style/button_demo"
+            android:layout_width="700dp"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="2bb4115db8b04a64ab0c34b4031c4107"
+            android:onClick="inputActiveCode"
+
+
+            />
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="190dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="yinxiang_michael"
+
+            />
+
+        <Button
+
+            style="@style/button_demo"
+            android:layout_width="700dp"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="4f0830ac4cf44014a13ae531eb32e7f1"
+            android:onClick="inputActiveCode"
+
+
+            />
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="190dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="yinxiang_wencheng"
+
+            />
+
+        <Button
+
+            style="@style/button_demo"
+            android:layout_width="700dp"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="6d6ab220015e43bbad00e16de2d9a1a4"
+            android:onClick="inputActiveCode"
+
+
+            />
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="190dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="yunbiao_michael"
+
+            />
+
+        <Button
+            style="@style/button_demo"
+            android:layout_width="700dp"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="6a766ce1cc014b80a5fa3709c5217180"
+            android:onClick="inputActiveCode"
+
+
+            />
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="190dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="yunbiao_qingsen"
+
+            />
+        <Button
+            style="@style/button_demo"
+            android:layout_width="700dp"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="45e438f2402a4aefaaf2a2f84904ba70"
+            android:onClick="inputActiveCode"
+
+
+            />
+
+
+    </LinearLayout>
+</ScrollView>
+

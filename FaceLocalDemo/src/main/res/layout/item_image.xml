@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/image_layout"
+    android:layout_width="match_parent"
+    android:layout_height="210dp"
+    android:orientation="horizontal"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    >
+
+
+
+    <TextView
+        android:id="@+id/image_name_view"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:paddingTop="30dp"
+        android:textSize="27sp"
+        android:textColor="@android:color/holo_red_dark"
+        />
+    <ImageView
+        android:id="@+id/image_content_view"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        />
+
+    <ImageView
+        android:paddingLeft="70dp"
+        android:layout_gravity="center"
+        android:id="@+id/image_checker"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/unchecked"
+        />
+
+
+</LinearLayout>

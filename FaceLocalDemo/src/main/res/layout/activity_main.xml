@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jdjr.risk.face.local.demo.main.FeatureListActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="30dp"
+        >
+
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="left"
+            android:background="@android:color/holo_green_light"
+
+            android:textColor="@android:color/holo_red_light"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:text="
+                          0 !!!!!请先设置faceArea,确保识别时人脸面积大于faceArea\n
+                          1 设备上电之后请不要插拔摄像头\n
+                          2 请固定摄像头不要用手拿着\n
+                          3 请确保摄像头和主板的相对角度\n
+                          4 请确保RGB+NIR摄像头成像方向一致\n
+                          5 请不要使用SDK内部非公开API\n
+                          6 预览view必须visible,隐藏NIR预览可以设置width=height=1\n
+                          7 预览左右上下颠倒可以通过scaleX=-1 scaleY=-1改变
+                          "
+            android:visibility="visible"
+
+            />
+
+
+
+
+        <!--
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="权限检查"
+
+            android:visibility="gone"
+            />
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="参数设置"
+
+            android:visibility="gone"
+            />
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="启动服务"
+
+            android:visibility="gone"
+            />
+        -->
+
+
+
+
+
+
+
+        <Button
+            android:layout_marginTop="30dp"
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="单人相机注册"
+            android:onClick="registerSingle"
+
+
+            />
+
+
+        <Button
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="单张图片注册"
+            android:onClick="registerImageSingle"
+
+            android:enabled="true"
+            />
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="多张图片注册"
+            android:onClick="registerImageMultiple"
+            />
+
+        <!--
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="删除单个用户"
+            android:onClick="removeUser"
+
+            android:enabled="false"
+            />
+        -->
+
+        <!--
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="删除全部用户"
+            android:onClick="removeAllUsers"
+            />
+        -->
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="注册用户列表"
+            android:onClick="showRegisterList"
+            />
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--
+        <Button
+            android:layout_marginTop="50dp"
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="云端识别"
+            android:onClick="verifyRemote"
+
+            android:visibility="gone"
+            />
+        -->
+
+
+
+
+
+
+
+        <!--
+        <Button
+            style="@style/button_green_dark"
+            android:text="从云端拉取特征"
+            android:onClick="pullFeaturesFromRemote"
+            />
+        -->
+
+        <!--
+        <EditText
+            android:id="@+id/path_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+
+            />
+
+        <Button
+            style="@style/button_green_dark"
+            android:layout_width="500dp"
+            android:text="获取上面文件夹全部图片路径"
+            android:onClick="getPaths"
+            android:background="@drawable/btn_bg_red_dark"
+            />
+        -->
+
+
+
+
+
+
+
+
+
+
+        <Button
+            android:layout_marginTop="70dp"
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="人脸识别1:N"
+            android:onClick="startVerifyActivity"
+            />
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="音箱：微笑自动拍照"
+            android:onClick="startExtractActivity"
+            />
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="亲邻：近距人脸识别"
+            android:onClick="startVerifyQinlinActivity"
+            />
+
+        <Button
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="图片比对1:1"
+            android:onClick="compare2Images"
+            />
+
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="识别流水"
+            android:onClick="showVerifyList"
+
+            />
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="抓拍流水"
+            android:onClick="showCaptureFace"
+
+            />
+
+
+
+
+
+
+        <Button
+            android:layout_marginTop="70dp"
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_green_selector"
+
+            android:text="特征拉取"
+            android:onClick="startRemoteActivity"
+
+            />
+
+
+
+
+        <!--
+        <Button
+            android:layout_marginTop="30dp"
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="RecordFrame"
+            android:onClick="recordFrame"
+
+            android:visibility="gone"
+
+            />
+
+        <Button
+            android:layout_marginTop="10dp"
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="ReplayFrame"
+            android:onClick="replayFrame"
+
+            android:visibility="gone"
+
+            />
+       -->
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>

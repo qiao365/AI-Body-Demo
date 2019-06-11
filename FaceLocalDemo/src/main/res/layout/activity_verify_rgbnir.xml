@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jdjr.risk.face.local.demo.verify.VerifyRGBNIRActivity"
+
+
+    >
+
+    <LinearLayout
+        android:id="@+id/face_result_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+
+            android:id="@+id/feature_state_view"
+
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+
+            android:layout_marginBottom="10dp"
+
+            android:visibility="gone"
+            />
+
+
+
+        <ViewFlipper
+            android:id="@+id/face_guide_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:inAnimation="@anim/slide_in_bottom"
+            >
+
+            <TextView
+                android:id="@+id/face_guide_view"
+
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+
+                android:background="@android:color/holo_green_light"
+
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="29sp"
+                android:textStyle="bold"
+
+                android:text="人脸姿态指引"
+
+                />
+
+        </ViewFlipper>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+
+
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="19sp"
+            android:textStyle="bold"
+
+            android:text="0 app可以模仿此Activity定制自身识别Activity\n1 请在正常光线下，正对摄像头中心\n2 请不要超出防伪识别距离120cm,请确保近红外瞳孔是黑色"
+            />
+
+
+        <TextView
+
+            android:id="@+id/face_area_view"
+
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+        <ViewFlipper
+            android:id="@+id/search_result_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:inAnimation="@anim/slide_in_bottom"
+            >
+
+            <TextView
+
+                android:id="@+id/search_result_view"
+
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+
+                android:background="@android:color/holo_green_light"
+
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark"
+
+                android:text="原始识别结果"
+
+                />
+
+        </ViewFlipper>
+
+
+        <TextView
+
+            android:id="@+id/check_verify_score_view"
+
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+
+        <TextView
+
+            android:id="@+id/search_duration_view"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+        <EditText
+            android:id="@+id/card_id_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="请输入业主id"
+            android:textSize="27sp"
+            android:textStyle="bold"
+
+            android:layout_marginBottom="30dp"
+
+
+            android:visibility="gone"
+
+            />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_bg_orange_selector"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:text="刷卡"
+            android:onClick="inputId"
+
+            android:layout_marginBottom="30dp"
+
+            android:visibility="gone"
+
+            />
+
+        <!--
+        <ImageView
+            android:id="@+id/camera_image_view"
+            android:layout_width="160px"
+            android:layout_height="120px"
+            />
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:id="@+id/selected_face_view"
+                android:layout_width="160px"
+                android:layout_height="120px"
+                />
+
+            <ViewFlipper
+                android:id="@+id/final_result_flipper"
+                android:layout_width="match_parent"
+                android:layout_height="120px"
+
+
+                android:inAnimation="@anim/slide_in_bottom"
+                >
+
+                <TextView
+                    android:layout_marginLeft="46dp"
+                    android:layout_marginRight="10dp"
+
+                    android:id="@+id/final_result_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+
+                    android:paddingLeft="9dp"
+                    android:gravity="left|center_vertical"
+
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="21sp"
+
+                    android:text="最终处理结果"
+
+                    />
+
+
+
+            </ViewFlipper>
+            
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+    <!-- camera preview and face box -->
+    <!--<com.hanks.htextview.typer.TyperTextView-->
+        <!--android:layout_marginBottom="5dp"-->
+
+        <!--android:id="@+id/local_register_result"-->
+
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:textSize="32sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:background="@android:color/holo_orange_light"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:gravity="center"-->
+        <!--app:charIncrease="1"-->
+        <!--app:typerSpeed="60"/>-->
+
+
+    <TextureView
+        android:layout_below="@id/face_result_layout"
+
+        android:layout_centerHorizontal="true"
+
+
+
+
+        android:id="@+id/camera_preview_rgb"
+        android:layout_width="@dimen/camera_display_width"
+        android:layout_height="@dimen/camera_display_height"
+
+
+        android:alpha="1"
+
+        android:scaleX="1"
+
+        />
+
+
+    <com.jdjr.risk.face.local.demo.view.FaceBoxesView
+        android:layout_below="@id/face_result_layout"
+
+
+        android:layout_centerHorizontal="true"
+
+
+
+
+        android:id="@+id/face_boxes_view"
+        android:layout_width="@dimen/camera_display_width"
+        android:layout_height="@dimen/camera_display_height"
+
+        android:alpha="0.9"
+
+
+        />
+
+
+
+
+    <TextureView
+        android:layout_below="@id/camera_preview_rgb"
+        android:layout_centerHorizontal="true"
+
+        android:id="@+id/camera_preview_nir"
+        android:layout_width="@dimen/camera_display_width"
+        android:layout_height="@dimen/camera_display_height"
+
+        android:alpha="1"
+
+        android:scaleX="1"
+
+        />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- search result-->
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

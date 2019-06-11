@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:elevation="2dp"
+    android:orientation="vertical">
+
+    <!--
+    <LinearLayout
+        android:id="@+id/rowBG"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/delete_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="删除"
+            android:background="@drawable/bg_delete" />
+    </LinearLayout>
+    -->
+
+    <!--
+    <View
+        android:layout_alignParentRight="true"
+
+        android:id="@+id/register_record_delete_button"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+
+        android:background="@android:color/holo_red_dark"
+
+        android:gravity="center"
+
+        android:textColor="@android:color/white"
+        android:text="删除"
+        />
+    -->
+
+
+
+    <LinearLayout
+        android:id="@+id/register_record_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:clickable="true"
+        android:elevation="3dp"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/register_id_view"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+        <TextView
+            android:id="@+id/register_time_view"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+        <TextView
+            android:id="@+id/register_user_view"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/register_gender_view"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+        <TextView
+            android:id="@+id/register_age_view"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+        <ImageView
+            android:layout_gravity="center_vertical"
+            android:id="@+id/register_face_view"
+            android:layout_width="320px"
+            android:layout_height="240px"
+            />
+
+        <Button
+            android:layout_marginLeft="5dp"
+
+            android:layout_gravity="right|center_vertical"
+
+            android:id="@+id/register_record_delete_button"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+
+            android:background="@drawable/btn_bg_red_selector"
+
+            android:gravity="center"
+
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:text="删除"
+            />
+
+
+    </LinearLayout>
+</RelativeLayout>

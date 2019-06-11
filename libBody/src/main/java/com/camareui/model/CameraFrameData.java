@@ -1,14 +1,18 @@
 package com.camareui.model;
 
+import android.hardware.Camera;
+
 public class CameraFrameData {
 
     private byte[] bytes;
     private int width;
     private int heigh;
-    public CameraFrameData(byte[] bytes, int width, int heigh){
+    private Camera camera;
+    public CameraFrameData(byte[] bytes, int width, int heigh,Camera camera){
         this.bytes = bytes;
         this.width = width;
         this.heigh = heigh;
+        this.camera = camera;
     }
 
     public void setBytes(byte[] bytes) {
@@ -25,6 +29,10 @@ public class CameraFrameData {
 
     public byte[] getBytes() {
         return bytes;
+    }
+
+    public Camera getCamera() {
+        return camera;
     }
 
     public int getWidth() {

@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jdjr.risk.face.local.demo.extract.ExtractPropertyActivity"
+
+
+    >
+
+    <LinearLayout
+        android:id="@+id/face_result_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+
+            android:id="@+id/feature_state_view"
+
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+
+            android:layout_marginBottom="10dp"
+
+            android:visibility="gone"
+            />
+
+
+
+        <ViewFlipper
+            android:id="@+id/face_guide_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:inAnimation="@anim/slide_in_bottom"
+            >
+
+            <TextView
+                android:id="@+id/face_guide_view"
+
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+
+                android:background="@android:color/holo_green_light"
+
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="29sp"
+                android:textStyle="bold"
+
+                android:text="人脸姿态指引"
+
+                />
+
+        </ViewFlipper>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+
+
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="19sp"
+            android:textStyle="bold"
+
+            android:text="0 app可以模仿此Activity定制自身识别Activity\n1 请在正常光线下，正对摄像头中心\n2 请不要超出防伪识别距离120cm,请确保近红外瞳孔是黑色"
+            />
+
+
+        <TextView
+
+            android:id="@+id/face_area_view"
+
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+        <ViewFlipper
+            android:id="@+id/search_result_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            android:inAnimation="@anim/slide_in_bottom"
+            >
+
+            <TextView
+
+                android:id="@+id/search_result_view"
+
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+
+                android:background="@android:color/holo_green_light"
+
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark"
+
+                android:text="原始识别结果"
+
+                />
+
+        </ViewFlipper>
+
+
+        <TextView
+
+            android:id="@+id/check_verify_score_view"
+
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+
+        <TextView
+
+            android:id="@+id/search_duration_view"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            />
+
+        <EditText
+            android:id="@+id/card_id_view"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="请输入业主id"
+            android:textSize="27sp"
+            android:textStyle="bold"
+
+            android:layout_marginBottom="30dp"
+
+            android:visibility="gone"
+
+            />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_bg_orange_selector"
+            android:textStyle="bold"
+            android:textSize="23sp"
+            android:text="刷卡"
+            android:onClick="inputId"
+
+            android:layout_marginBottom="30dp"
+
+            android:visibility="gone"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:id="@+id/selected_face_view"
+                android:layout_width="160px"
+                android:layout_height="120px"
+                />
+
+            <ViewFlipper
+                android:id="@+id/final_result_flipper"
+                android:layout_width="match_parent"
+                android:layout_height="120px"
+
+
+                android:inAnimation="@anim/slide_in_bottom"
+                >
+
+                <TextView
+                    android:layout_marginLeft="46dp"
+                    android:layout_marginRight="10dp"
+
+                    android:id="@+id/final_result_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="120px"
+
+                    android:paddingLeft="9dp"
+                    android:gravity="left|center_vertical"
+
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="21sp"
+
+                    android:text="最终处理结果"
+
+                    />
+
+
+
+            </ViewFlipper>
+            
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+<!--
+    <TextureView
+        android:layout_below="@id/face_result_layout"
+
+        android:layout_centerHorizontal="true"
+
+
+
+
+        android:id="@+id/camera_preview_rgb"
+        android:layout_width="@dimen/camera_display_width"
+        android:layout_height="@dimen/camera_display_height"
+
+
+
+
+        />
+-->
+
+
+
+
+    <com.seu.magicfilter.widget.MagicCameraView
+        android:layout_below="@id/face_result_layout"
+
+        android:layout_centerHorizontal="true"
+
+
+
+
+        android:id="@+id/camera_preview_rgb"
+        android:layout_width="@dimen/camera_display_width"
+        android:layout_height="@dimen/camera_display_height"
+
+
+
+
+        />
+
+
+
+    <com.jdjr.risk.face.local.demo.view.FaceBoxesView
+        android:layout_below="@id/face_result_layout"
+
+
+        android:layout_centerHorizontal="true"
+
+
+
+
+        android:id="@+id/face_boxes_view"
+        android:layout_width="@dimen/camera_display_width"
+        android:layout_height="@dimen/camera_display_height"
+
+        android:alpha="0.9"
+
+
+        />
+
+
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/camera_preview_rgb"
+        android:id="@+id/whiten_button"
+
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_bg_orange_selector"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:text="美白"
+
+        android:onClick="makeWhiten"
+
+        />
+
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/camera_preview_rgb"
+        android:layout_toRightOf="@id/whiten_button"
+        android:id="@+id/smooth_button0"
+
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/btn_bg_orange_selector"
+
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:text="磨皮0"
+
+        android:tag="0"
+        android:onClick="makeSmooth"
+        />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/camera_preview_rgb"
+        android:layout_toRightOf="@id/smooth_button0"
+        android:id="@+id/smooth_button1"
+
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/btn_bg_orange_selector"
+
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:text="磨皮1"
+
+        android:tag="1"
+        android:onClick="makeSmooth"
+        />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/camera_preview_rgb"
+        android:layout_toRightOf="@id/smooth_button1"
+        android:id="@+id/smooth_button2"
+
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/btn_bg_orange_selector"
+
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:text="磨皮2"
+
+        android:tag="2"
+        android:onClick="makeSmooth"
+        />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/camera_preview_rgb"
+        android:layout_toRightOf="@id/smooth_button2"
+        android:id="@+id/smooth_button3"
+
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/btn_bg_orange_selector"
+
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:text="磨皮3"
+
+        android:tag="3"
+        android:onClick="makeSmooth"
+        />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/camera_preview_rgb"
+        android:layout_toRightOf="@id/smooth_button3"
+        android:id="@+id/smooth_button4"
+
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/btn_bg_orange_selector"
+
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:text="磨皮4"
+
+        android:tag="4"
+        android:onClick="makeSmooth"
+        />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/camera_preview_rgb"
+        android:layout_toRightOf="@id/smooth_button4"
+        android:id="@+id/smooth_button5"
+
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/btn_bg_orange_selector"
+
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:text="磨皮5"
+
+        android:tag="5"
+        android:onClick="makeSmooth"
+        />
+
+
+
+
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/smooth_button0"
+
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+
+        android:background="@drawable/btn_bg_orange_selector"
+
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:text="拍照"
+
+        android:onClick="takePicture"
+
+        />
+
+
+
+
+
+    <TextureView
+        android:layout_below="@id/camera_preview_rgb"
+        android:layout_centerHorizontal="true"
+
+        android:id="@+id/camera_preview_nir"
+        android:layout_width="@dimen/camera_display_width"
+        android:layout_height="@dimen/camera_display_height"
+
+        android:alpha="0.9"
+
+        android:scaleX="1"
+
+        />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- search result-->
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

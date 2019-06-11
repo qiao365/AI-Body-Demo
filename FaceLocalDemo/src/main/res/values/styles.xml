@@ -1,0 +1,86 @@
+<resources>
+
+    <style name="demo_theme" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="button_demo">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+
+    <style name="button_orange_dark">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="android:background">@drawable/btn_bg_orange_dark</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="button_red_dark">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="android:background">@drawable/btn_bg_red_dark</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="button_blue_dark">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="android:background">@drawable/btn_bg_blue_dark</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--</style>-->
+
+    <!--
+    android:layout_marginTop="90dp"
+    android:layout_width="300dp"
+    android:layout_height="70dp"
+    android:background="@drawable/btn_bg_demo"
+    android:paddingLeft="50dp"
+
+    android:gravity="left|center_vertical"
+    android:textSize="23sp"
+    android:textStyle="bold"
+    android:onClick="inputId"
+    -->
+
+    <style name="button_id">
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/btn_bg_demo</item>
+        <item name="android:paddingLeft">50dp</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:onClick">inputId</item>
+    </style>
+
+
+
+
+
+
+</resources>

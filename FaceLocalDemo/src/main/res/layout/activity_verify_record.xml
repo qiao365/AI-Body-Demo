@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/all_record_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jdjr.risk.face.local.ui.record.VerifyRecordActivity"
+    >
+    
+    
+    <TextView
+        android:id="@+id/empty_record_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        android:text="没有记录"
+        />
+
+    <!--
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="90dp"
+        android:text="showLastRecord"
+        android:onClick="showLastRecord"
+        />
+    -->
+
+    <!--
+    <TextView
+        android:id="@+id/last_record_view"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#9fffffff"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        />
+    <ImageView
+        android:id="@+id/record_face_view"
+        android:layout_width="match_parent"
+        android:layout_height="180px" />
+    -->
+
+    <!--
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="doSomething"
+        android:onClick="doSomething"
+        />
+    -->
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/all_record_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3fffffff"
+        />
+
+
+
+</LinearLayout>

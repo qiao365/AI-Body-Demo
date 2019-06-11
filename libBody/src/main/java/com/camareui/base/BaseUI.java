@@ -2,33 +2,29 @@ package com.camareui.base;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Message;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicYuvToRGB;
-import android.renderscript.Type;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.camareui.constant.Constant;
 import com.camareui.fragment.LegacyCameraConnectionFragment;
 import com.camareui.model.CameraFrameData;
 import com.camareui.utils.BitmapUtil;
-import com.camareui.utils.YuvToRGB;
 import com.camareui.view.OverlayView;
 import com.camareui.utils.ImageUtils;
-import com.jd.JET.BodyLandMkDetection;
+import com.jd.face.library.domain.Facial;
+import com.jd.face.library.domain.Point;
+import com.jd.face.library.jni.DetectorParams;
+import com.jd.face.library.jni.FaceLibrary;
+import com.jd.face.library.jni.Options;
+import com.jd.face.library.jni.YUV;
 
 import java.io.File;
 import java.util.Timer;
@@ -134,9 +130,12 @@ public class BaseUI implements Camera.PreviewCallback {
     }
 
     private void initJetDetect() {
-        BodyLandMkDetection.initWithPath(Constant.JET_BIN_DIR + File.separator + Constant
-                .JET_INPUT256_C64_PARAM_BIN, Constant.JET_BIN_DIR + File.separator + Constant
-                .JET_INPUT256_C64_BIN);
+        Options options = new Options();
+        try {
+            FaceLibrary.getInstaance().init(options);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -149,50 +148,61 @@ public class BaseUI implements Camera.PreviewCallback {
     }
 
     protected void jetBodyRecognition() {
-
-        long startTime = System.currentTimeMillis();
-        int prevSizeW = cameraFrameData.getWidth();
-        int prevSizeH = cameraFrameData.getHeigh();
-
-        Bitmap picture = BitmapUtil.compressYUVtoBitmap(activity,cameraFrameData.getBytes(),prevSizeW,prevSizeH);
-
-        Bitmap copyBitmap = picture.copy(Bitmap.Config.ARGB_8888, true);
-        final Canvas croppedCanvas = new Canvas(copyBitmap);
-
-        //关闭预览
-        if (mDataSettingAndListener != null && !mDataSettingAndListener.getPreViewStatus()) {
-            return;
-        }
-        long endTime = System.currentTimeMillis();
-        //根据data保存的数据画框
-
-        int width = copyBitmap.getWidth();
-        int height = copyBitmap.getHeight();
-        int[] dataNormal = new int[width * height];
-        copyBitmap.getPixels(dataNormal, 0, width, 0, 0, width, height);
-        float[] testResultData = new float[14 * 3];
-
-        Log.i(TAG, "jet检测，获取bitmap耗时: " + (endTime - startTime));
-        BodyLandMkDetection.bodyDetectLandMarkRGBA(height, width, dataNormal, testResultData);
-
-        Paint p = new Paint();
-        p.setColor(Color.RED);
-        p.setStrokeWidth(4.0f);
-        float xScale = width / 256f;
-        float ySclae = height / 256f;
-        for (int i = 0; i < 14; i++) {
-            float xPos = testResultData[3 * i] * xScale;
-            float yPos = testResultData[3 * i + 1] * ySclae;
-            croppedCanvas.drawCircle(xPos, yPos, 5, p);
-            Log.i(TAG, "jet检测，point： " + xPos +" ," +yPos);
+        byte[] bytes = cameraFrameData.getBytes();
+        Camera camera = cameraFrameData.getCamera();
+        try {
+            Facial[] faces = FaceLibrary.getInstaance().estimateBodyLandmark(new YUV(bytes, camera),
+                    DetectorParams.All());
+            if (faces != null && faces.length > 0) {
+                showPoints(faces[0],bytes);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        endTime = System.currentTimeMillis();
-        Log.i(TAG, "jet检测，总耗时： " + (endTime - startTime));
-        textureCopyBitmap = copyBitmap.copy(Bitmap.Config.ARGB_8888, true);
-        picture.recycle();
-        picture = null;
-        requestRender();
+//        long startTime = System.currentTimeMillis();
+//        int prevSizeW = cameraFrameData.getWidth();
+//        int prevSizeH = cameraFrameData.getHeigh();
+//
+//        Bitmap picture = BitmapUtil.compressYUVtoBitmap(activity,cameraFrameData.getBytes(),prevSizeW,prevSizeH);
+//
+//        Bitmap copyBitmap = picture.copy(Bitmap.Config.ARGB_8888, true);
+//        final Canvas croppedCanvas = new Canvas(copyBitmap);
+//
+//        //关闭预览
+//        if (mDataSettingAndListener != null && !mDataSettingAndListener.getPreViewStatus()) {
+//            return;
+//        }
+//        long endTime = System.currentTimeMillis();
+//        //根据data保存的数据画框
+//
+//        int width = copyBitmap.getWidth();
+//        int height = copyBitmap.getHeight();
+//        int[] dataNormal = new int[width * height];
+//        copyBitmap.getPixels(dataNormal, 0, width, 0, 0, width, height);
+//        float[] testResultData = new float[14 * 3];
+//
+//        Log.i(TAG, "jet检测，获取bitmap耗时: " + (endTime - startTime));
+//        BodyLandMkDetection.bodyDetectLandMarkRGBA(height, width, dataNormal, testResultData);
+//
+//        Paint p = new Paint();
+//        p.setColor(Color.RED);
+//        p.setStrokeWidth(4.0f);
+//        float xScale = width / 256f;
+//        float ySclae = height / 256f;
+//        for (int i = 0; i < 14; i++) {
+//            float xPos = testResultData[3 * i] * xScale;
+//            float yPos = testResultData[3 * i + 1] * ySclae;
+//            croppedCanvas.drawCircle(xPos, yPos, 5, p);
+//            Log.i(TAG, "jet检测，point： " + xPos +" ," +yPos);
+//        }
+//
+//        endTime = System.currentTimeMillis();
+//        Log.i(TAG, "jet检测，总耗时： " + (endTime - startTime));
+//        textureCopyBitmap = copyBitmap.copy(Bitmap.Config.ARGB_8888, true);
+//        picture.recycle();
+//        picture = null;
+//        requestRender();
     }
 
 
@@ -210,12 +220,49 @@ public class BaseUI implements Camera.PreviewCallback {
         previewWidth = previewSize.width;
         previewHeight = previewSize.height;
         if (cameraFrameData == null) {
-            cameraFrameData = new CameraFrameData(bytes, previewWidth, previewHeight);
+            cameraFrameData = new CameraFrameData(bytes, previewWidth, previewHeight,camera);
         } else {
             cameraFrameData.setBytes(bytes);
             cameraFrameData.setWidth(previewWidth);
             cameraFrameData.setHeigh(previewHeight);
         }
+    }
+
+    private void showPoints(Facial face, byte[] bytes) {
+        int width = cameraFrameData.getWidth();
+        int height = cameraFrameData.getHeigh();
+        float xScale = width / 640;
+        float ySclae = height / 480;
+        Paint p = new Paint();
+        p.setColor(Color.RED);
+        p.setStrokeWidth(4.0f);
+
+
+        Bitmap picture = BitmapUtil.compressYUVtoBitmap(activity,bytes,width,height);
+
+        Bitmap copyBitmap = picture.copy(Bitmap.Config.ARGB_8888, true);
+        final Canvas croppedCanvas = new Canvas(copyBitmap);
+
+        //关闭预览
+        if (mDataSettingAndListener != null && !mDataSettingAndListener.getPreViewStatus()) {
+            return;
+        }
+        //根据data保存的数据画框
+        Point[] points = face.landmark.points;
+        Log.i(TAG, "-------jet检测，point size： " + points.length);
+
+        for (int i = 0; i < points.length; i++) {
+            float xPos = points[i].x * xScale;
+            float yPos = points[i].y * ySclae;
+            croppedCanvas.drawCircle(xPos, yPos, 5, p);
+            Log.i(TAG, "jet检测，point： " + xPos +" ," +yPos);
+        }
+
+        textureCopyBitmap = copyBitmap.copy(Bitmap.Config.ARGB_8888, true);
+        picture.recycle();
+        picture = null;
+        requestRender();
+
     }
 
     private LegacyCameraConnectionFragment fragment;

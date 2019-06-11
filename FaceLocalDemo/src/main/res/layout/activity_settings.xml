@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jdjr.risk.face.local.demo.main.FaceSettingsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="不要在启动服务后修改配置！！！"
+
+            />
+
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:background="@drawable/btn_bg_orange_selector"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:text="启动人脸服务"
+            android:onClick="startFaceService"
+
+            android:layout_marginBottom="30dp"
+            />
+
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:background="@drawable/btn_bg_orange_selector"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:text="设置音箱参数"
+            android:onClick="configureEmotionSettings"
+
+            android:layout_marginBottom="30dp"
+            />
+
+
+
+
+        <RadioGroup
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:id="@+id/camera_type_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/holo_orange_dark"
+
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="23sp"
+                android:text="相机类型设置:"
+                />
+            @@@@@@@@@@ extractFeaturesFromImage result
+            <RadioButton
+                android:id="@+id/camera_system_radio"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:text="相机Android"
+                android:onClick="setCameraSystem"
+                />
+
+            <RadioButton
+                android:id="@+id/camera_jdy_k2002a_a4_radio"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:text="相机JDY"
+                android:onClick="setCameraJDY"
+                />
+        </RadioGroup>
+
+
+        <Switch
+            android:id="@+id/rgb_mirror_switch"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:switchMinWidth="110dp"
+
+            android:background="@android:color/holo_orange_dark"
+
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:text="RGB显示镜像"
+
+            android:onClick="setMirrorRGB"
+            />
+
+        <Switch
+            android:id="@+id/nir_mirror_switch"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:switchMinWidth="110dp"
+
+            android:background="@android:color/holo_orange_dark"
+
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:text="NIR显示镜像"
+
+            android:onClick="setMirrorNIR"
+            />
+
+
+
+
+        <Switch
+            android:id="@+id/capture_face_switch"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:switchMinWidth="110dp"
+
+            android:background="@android:color/holo_orange_dark"
+
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:text="抓拍所有人脸?"
+
+            android:onClick="captureFace"
+            />
+
+
+
+        <Switch
+            android:id="@+id/multiple_face_switch"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:switchMinWidth="110dp"
+
+            android:background="@android:color/holo_orange_dark"
+
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:text="开启多人选帧?"
+
+            android:onClick="enableMultiple"
+            />
+
+
+
+
+        <Switch
+            android:id="@+id/check_area_switch"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:switchMinWidth="110dp"
+
+            android:background="@android:color/holo_orange_dark"
+
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:text="检查人脸面积?"
+
+            android:onClick="checkFaceArea"
+            />
+
+
+
+
+        <Switch
+            android:id="@+id/verify_face_switch"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:switchMinWidth="110dp"
+
+            android:background="@android:color/holo_orange_dark"
+
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:text="识别人脸?"
+
+            android:onClick="enableVerifyFace"
+            />
+
+        <Switch
+            android:id="@+id/extract_property_switch"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:switchMinWidth="110dp"
+
+            android:background="@android:color/holo_orange_dark"
+
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:text="抽取人脸属性?"
+
+            android:onClick="enableExtractProperty"
+            />
+
+        <Switch
+            android:id="@+id/only_emotion_switch"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:switchMinWidth="110dp"
+
+            android:background="@android:color/holo_orange_dark"
+
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:text="只是抽取表情?"
+
+            android:onClick="enableOnlyEmotion"
+            />
+
+
+        <RadioGroup
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:id="@+id/check_type_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/holo_orange_dark"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="23sp"
+                android:text="防伪方式设置:"
+                />
+
+            <RadioButton
+                android:id="@+id/check_none_radio"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:text="关闭防伪"
+                android:onClick="checkNone"
+                />
+
+            <RadioButton
+                android:id="@+id/check_rgb_radio"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:text="RGB防伪"
+                android:onClick="checkRGB"
+                />
+
+            <RadioButton
+                android:id="@+id/check_nir_radio"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:text="NIR防伪"
+                android:onClick="checkNIR"
+                />
+
+
+        </RadioGroup>
+
+
+        <Switch
+            android:id="@+id/pull_auto_switch"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="230dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:switchMinWidth="110dp"
+
+            android:background="@android:color/holo_orange_dark"
+
+            android:textSize="23sp"
+            android:textStyle="bold"
+
+            android:text="自动定时拉取特征?"
+
+            android:onClick="enablePullAuto"
+            />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>
+

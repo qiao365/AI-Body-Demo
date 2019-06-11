@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".compare.CompareImageActivity"
+    >
+
+    <TextView
+        android:layout_marginTop="50dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="30dp"
+
+        android:gravity="center"
+
+        android:textColor="@android:color/holo_red_dark"
+
+        android:textSize="31sp"
+        android:textStyle="bold"
+
+        android:text="请选择一张身份证照片AND一张人脸照片222222"
+
+        />
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
+            android:id="@+id/image_register_button"
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_bg_green_selector"
+            android:textStyle="bold"
+            android:textSize="29sp"
+            android:text="比对"
+            android:onClick="compare2Images"
+            />
+
+        <Button
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center"
+            android:id="@+id/select_all_button"
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_bg_green_selector"
+            android:textStyle="bold"
+            android:textSize="29sp"
+            android:text="全选"
+            android:onClick="selectAll"
+            android:visibility="gone"
+            />
+        <TextView
+            android:layout_marginLeft="230dp"
+            android:paddingLeft="30dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/select_count"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="29sp"
+            android:textColor="@android:color/holo_orange_dark"
+            />
+
+    </LinearLayout>
+
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="50dp"
+        android:id="@+id/image_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jdjr.risk.face.local.demo.main.RemotePullActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="30dp"
+        >
+
+
+
+        <Button
+            android:layout_marginTop="70dp"
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="向云端注册特征"
+            android:onClick="registerRemote"
+
+            />
+
+
+
+
+
+
+        <Button
+            android:layout_marginTop="50dp"
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="从云端拉取全量特征"
+            android:onClick="pullFeaturesFromRemoteAll"
+            />
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="从云端拉取特征增量"
+            android:onClick="pullFeaturesFromRemoteNew"
+            />
+
+
+
+
+
+
+
+        <Button
+            android:layout_marginTop="50dp"
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="全量特征注册"
+            android:onClick="registerRemoteFeaturesAll"
+            />
+
+
+
+        <Button
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="增量特征注册"
+            android:onClick="registerRemoteFeaturesNew"
+            />
+
+
+
+
+
+        <!--
+        <Button
+            android:layout_marginTop="30dp"
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="RecordFrame"
+            android:onClick="recordFrame"
+
+            android:visibility="gone"
+
+            />
+
+        <Button
+            android:layout_marginTop="10dp"
+
+            style="@style/button_demo"
+            android:background="@drawable/btn_bg_orange_selector"
+
+            android:text="ReplayFrame"
+            android:onClick="replayFrame"
+
+            android:visibility="gone"
+
+            />
+       -->
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>

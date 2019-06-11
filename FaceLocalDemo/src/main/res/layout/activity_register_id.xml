@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    android:layout_marginLeft="30dp"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_marginLeft="9dp"
+        android:id="@+id/id_label_view"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:textSize="21sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="用户ID(必填:)"
+        />
+    <EditText
+        android:id="@+id/id_edit_view"
+        android:layout_marginLeft="9dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+
+        android:hint="请输入用户唯一ID"
+        android:textSize="23sp"
+        android:textStyle="bold"
+
+        android:digits="0123456789qwertyuiopasdfghjklzxcvbnm"
+
+
+        />
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/register_id_view"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:background="@drawable/btn_bg_demo"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:text="注册"
+        android:onClick="registerUser"
+
+        android:layout_marginBottom="30dp"
+        />
+
+
+
+
+
+
+
+
+
+
+
+
+    <Button
+        style="@style/button_id"
+        android:text="zhaohongtao1"
+        />
+
+    <Button
+        style="@style/button_id"
+        android:text="liuyao11"
+        />
+
+
+    <Button
+        style="@style/button_id"
+        android:text="liuyuguang1"
+        />
+
+
+    <Button
+        style="@style/button_id"
+        android:text="fuhaijing"
+        />
+
+
+    <Button
+        style="@style/button_id"
+        android:text="wangxiaoguang1"
+        />
+
+    <Button
+        style="@style/button_id"
+        android:text="zhaowei"
+        />
+
+    <Button
+        style="@style/button_id"
+        android:text="yanglili"
+        />
+
+
+    <Button
+        style="@style/button_id"
+        android:text="heyixin"
+        />
+
+    <Button
+        style="@style/button_id"
+        android:text="huaxiaochun"
+        />
+
+
+    <Button
+        style="@style/button_id"
+        android:text="lvjun"
+        />
+
+    <Button
+        style="@style/button_id"
+        android:text="timestamp"
+        />
+
+
+
+
+
+
+    <Button
+        android:layout_marginTop="90dp"
+        android:id="@+id/clear_id_button"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_bg_demo"
+
+        android:paddingLeft="50dp"
+        android:gravity="left|center_vertical"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:text="清空ID"
+        android:onClick="clearId"
+        />
+
+
+
+
+
+
+
+
+
+
+
+    
+</LinearLayout>

@@ -1,0 +1,36 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="swipeWidth">60dp</dimen>
+    <dimen name="left_margin">23dp</dimen>
+    <dimen name="rgiht_margin">10dp</dimen>
+    <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="info_width">70dp</dimen>
+    <dimen name="import_text_size">24dp</dimen>
+    <dimen name="text_edit_size">22sp</dimen>
+    <dimen name="title_size">25sp</dimen>
+    <dimen name="edit_height_column">80dp</dimen>
+    <dimen name="image_size">95dp</dimen>
+    <dimen name="right_margin">25dp</dimen>
+    <dimen name="bar_height_75dp">75dp</dimen>
+    <dimen name="padding_21dp">21dp</dimen>
+    <dimen name="bar_height_73dp">73dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+
+
+    <dimen name="camera_display_width">640px</dimen>
+    <dimen name="camera_display_height">480px</dimen>
+
+
+    <!--<dimen name="camera_display_width">480px</dimen>-->
+    <!--<dimen name="camera_display_height">640px</dimen>-->
+
+
+    <dimen name="standard_padding">8dip</dimen>
+    <dimen name="half_padding">4dip</dimen>
+
+
+
+</resources>

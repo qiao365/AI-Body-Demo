@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jdjr.risk.face.local.demo">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:largeHeap="true"
+        android:icon="@drawable/face_local_demo_icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/demo_theme"
+        >
+
+
+
+        <activity android:name="com.jdjr.risk.face.local.demo.main.ReadMeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+
+        <activity android:name="com.jdjr.risk.face.local.demo.main.CameraRotationActivity">
+
+        </activity>
+
+
+        <!-- permission -->
+        <activity android:name=".permission.PermissionsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
+
+        <!--<activity android:name="com.jdjr.risk.face.local.demo.active.QRActivity"/>-->
+        <activity android:name="com.jdjr.risk.face.local.demo.main.DeviceActiveActivity"/>
+        <!--<activity android:name="com.yzq.testzxing.MainActivity"/>-->
+        <activity android:name="com.yzq.testzxing.zxing.android.CaptureActivity"/>
+
+        <activity android:name="com.jdjr.risk.face.local.demo.main.FaceSettingsActivity"/>
+
+        <activity android:name="com.jdjr.risk.face.local.demo.main.FeatureListActivity"/>
+
+        <activity android:name="com.jdjr.risk.face.local.demo.main.AlgorithmPerformanceActivity"/>
+
+        <activity android:name=".main.RemotePullActivity"/>
+
+
+
+
+
+
+
+
+
+
+
+
+        <activity android:name="com.jdjr.risk.face.local.demo.register.RegisterIdActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
+
+        <activity android:name="com.jdjr.risk.face.local.demo.register.RegisterCaptureActivity"/>
+        <activity android:name="com.jdjr.risk.face.local.demo.register.RegisterFolderActivity"/>
+        <activity android:name="com.jdjr.risk.face.local.demo.register.RegisterImageActivity"/>
+
+        <activity android:name="com.jdjr.risk.face.local.demo.register.RegisterRecordActivity"/>
+        
+
+
+
+
+
+
+
+
+
+
+        <activity android:name=".compare.CompareFolderActivity"/>
+        <activity android:name=".compare.CompareImageActivity"/>
+
+        <activity android:name=".extract.ExtractPropertyActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
+        
+        <activity android:name="com.jdjr.risk.face.local.demo.verify.VerifyRGBNIRActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
+
+        <activity android:name="com.jdjr.risk.face.local.demo.business.QinlinVerifyActivity"/>
+
+
+
+
+
+
+
+        <activity android:name=".verify.VerifyRecordActivity"/>
+
+
+
+
+        
+        
+        <activity android:name=".capture.CaptureFaceActivity"/>
+        
+        
+        
+
+
+
+
+        <activity android:name=".remote.RemoteRegisterIdActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
+
+        <activity android:name=".remote.RemoteRegisterCaptureActivity"/>
+
+
+
+
+
+    </application>
+
+
+
+</manifest>
